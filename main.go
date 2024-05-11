@@ -16,7 +16,7 @@ type FileType struct {
 }
 
 func main() {
-	jsonFile, err := os.Open("file.json")
+	jsonFile, err := os.Open("Data.Applications.json")
 	if err != nil {
 		fmt.Println("Error opening JSON file: ", err)
 		return
