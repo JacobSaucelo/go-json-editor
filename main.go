@@ -15,6 +15,14 @@ type FileType struct {
 	UpdatedDate string `json:"Updated Date"`
 }
 
+type FileTypeUpdated struct {
+	Name        string `json:"Name"`
+	UserName    string `json:"UserName"`
+	Status      int    `json:"Status"`
+	CreatedDate string `json:"CreatedDate"`
+	UpdatedDate string `json:"UpdatedDate"`
+}
+
 func main() {
 	jsonFile, err := os.Open("Data.Applications.json")
 	if err != nil {
@@ -35,12 +43,19 @@ func main() {
 
 	fmt.Println("data", jsonData[2])
 
+	var updatedJsonData []FileTypeUpdated
+
 	for i := range jsonData {
-		jsonData[i].CreatedDate = jsonData[i].CreatedDate
-		jsonData[i].UpdatedDate = jsonData[i].UpdatedDate
+		updatedJsonData = append(updatedJsonData, FileTypeUpdated{
+			Name:        jsonData[i].Name,
+			UserName:    jsonData[i].UserName,
+			Status:      jsonData[i].Status,
+			CreatedDate: jsonData[i].CreatedDate,
+			UpdatedDate: jsonData[i].UpdatedDate,
+		})
 	}
 
-	updatedJSON, err := json.Marshal(jsonData)
+	updatedJSON, err := json.Marshal(updatedJsonData)
 	if err != nil {
 		fmt.Println("Error marshalling JSON:", err)
 		return
