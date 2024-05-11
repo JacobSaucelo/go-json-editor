@@ -8,11 +8,11 @@ import (
 )
 
 type FileType struct {
-	Name        string `json:Name`
-	UserName    string `json:UserName`
-	Status      int    `json:Status`
-	CreatedDate string `json:Created Date`
-	UpdatedDate string `json:Updated Date`
+	Name        string `json:"Name"`
+	UserName    string `json:"UserName"`
+	Status      int    `json:"Status"`
+	CreatedDate string `json:"Created Date"`
+	UpdatedDate string `json:"Updated Date"`
 }
 
 func main() {
@@ -32,6 +32,8 @@ func main() {
 		fmt.Println("Error parsing JSON: ", err)
 		return
 	}
+
+	fmt.Println("data", jsonData[2])
 
 	for i := range jsonData {
 		jsonData[i].CreatedDate = jsonData[i].CreatedDate
